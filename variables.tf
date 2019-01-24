@@ -5,12 +5,12 @@ variable "api_id" {
 
 variable "parent_resource_id" {
   type = "string"
-  description = "Root resource id of supplied REST API"
+  description = "Parent resource id"
 }
 
-variable "resource_name" {
+variable "path_part" {
   type = "string"
-  description = "Resource name"
+  description = "Resource path part value"
 }
 
 variable "api_key_required" {

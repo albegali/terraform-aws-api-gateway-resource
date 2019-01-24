@@ -1,11 +1,9 @@
-# resource
 resource "aws_api_gateway_resource" "resource" {
   rest_api_id = "${var.api_id}"
   parent_id   = "${var.parent_resource_id}"
-  path_part   = "${var.resource_name}"
+  path_part   = "${var.path_part}"
 }
 
-# resource methods
 resource "aws_api_gateway_method" "method" {
   rest_api_id = "${var.api_id}"
   resource_id = "${aws_api_gateway_resource.resource.id}"
@@ -50,7 +48,6 @@ resource "aws_api_gateway_integration_response" "integration_response" {
   status_code = "200"
 }
 
-# resource lambdas
 resource "aws_api_gateway_integration" "resource_lambda_integration" {
   depends_on = [
     "aws_api_gateway_method.method"
