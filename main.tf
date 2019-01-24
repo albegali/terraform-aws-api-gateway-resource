@@ -9,7 +9,8 @@ resource "aws_api_gateway_resource" "resource" {
 resource "aws_api_gateway_method" "method" {
   rest_api_id = "${var.api_id}"
   resource_id = "${aws_api_gateway_resource.resource.id}"
-  authorization = "NONE"
+  authorization = "${lookup(var.methods[count.index], "authorization", "NONE")}"
+  authorizer_id = "${lookup(var.methods[count.index], "authorizer_id", "")}"
 
   api_key_required = "${var.api_key_required}"
 

@@ -1,15 +1,19 @@
-# Terraform Serverless Resource module
+# Terraform AWS API Gateway resource module
+
+*Forked from https://github.com/mewa/terraform-aws-serverless-resource*
 
 This module simplifies the setup required to deploy Lambda functions under API Gateway. It also sets up CORS for created resources and methods.
 
 It creates resources and sets up HTTP methods to invoke supplied Lambdas.
+
+It allows set custom authentication to HTTP methods.
 
 # Examples
 
 ```hcl
 # /test
 module "test" {
-  source = "mewa/serverless-resource/aws"
+  source = "fernanfpinformatica/api-gateway-resource/aws"
   version = "1.2.0"
 
   api = "${aws_api_gateway_rest_api.test_api.id}"
@@ -20,12 +24,13 @@ module "test" {
   resource = "test"
   origin = "https://example.com"
 
-  num_methods = 2
   methods = [
     {
       method = "PUT"
       type = "AWS", # Optionally override lambda integration type, defaults to "AWS_PROXY"
       invoke_arn = "${aws_lambda_function.test_put_lambda.invoke_arn}"
+      authorization = "COGNITO_USER_POOLS", # Optionally override method authorization, defaults to "NONE"
+      authorizer_id = "${aws_api_gateway_authorizer.test_api.id}" # Optionally set method authorizer_id, defaults to ""
     },
     {
       method = "DELETE"
