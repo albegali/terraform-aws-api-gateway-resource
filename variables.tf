@@ -1,14 +1,14 @@
-variable "api" {
+variable "api_id" {
   type = "string"
   description = "REST API id"
 }
 
-variable "root_resource" {
+variable "parent_resource_id" {
   type = "string"
   description = "Root resource id of supplied REST API"
 }
 
-variable "resource" {
+variable "resource_name" {
   type = "string"
   description = "Resource name"
 }
@@ -20,11 +20,6 @@ variable "api_key_required" {
 variable "methods" {
   type = "list"
   description = "List of resource methods"
-}
-
-variable "num_methods" {
-  type = "string"
-  description = "Number of methods"
 }
 
 variable "origin" {
