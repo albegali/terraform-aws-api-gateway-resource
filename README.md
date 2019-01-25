@@ -137,12 +137,14 @@ module "customer" {
       invoke_arn = "${aws_lambda_function.crud_lambda.invoke_arn}"
       authorization = "COGNITO_USER_POOLS"
       authorizer_id = "${aws_api_gateway_authorizer.test_api.id}"
+      credentials = "${aws_iam_role.api_gateway.arn}"
     },
     {
       method = "POST"
       invoke_arn = "${aws_lambda_function.crud_lambda.invoke_arn}"
       authorization = "COGNITO_USER_POOLS"
       authorizer_id = "${aws_api_gateway_authorizer.test_api.id}"
+      credentials = "${aws_iam_role.api_gateway.arn}"
     }
   ]
 }
@@ -165,18 +167,21 @@ module "customer_customer-id" {
       invoke_arn = "${aws_lambda_function.crud_lambda.invoke_arn}"
       authorization = "COGNITO_USER_POOLS"
       authorizer_id = "${aws_api_gateway_authorizer.test_api.id}"
+      credentials = "${aws_iam_role.api_gateway.arn}"
     },
     {
       method = "PUT"
       invoke_arn = "${aws_lambda_function.crud_lambda.invoke_arn}"
       authorization = "COGNITO_USER_POOLS"
       authorizer_id = "${aws_api_gateway_authorizer.test_api.id}"
+      credentials = "${aws_iam_role.api_gateway.arn}"
     },
     {
       method = "DELETE"
       invoke_arn = "${aws_lambda_function.crud_lambda.invoke_arn}"
       authorization = "COGNITO_USER_POOLS"
       authorizer_id = "${aws_api_gateway_authorizer.test_api.id}"
+      credentials = "${aws_iam_role.api_gateway.arn}"
     }
   ]
 }
