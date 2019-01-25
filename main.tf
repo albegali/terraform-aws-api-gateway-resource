@@ -62,6 +62,8 @@ resource "aws_api_gateway_integration" "resource_lambda_integration" {
   integration_http_method = "POST"
   type                    = "${lookup(var.methods[count.index], "type", "AWS_PROXY")}"
   uri                     = "${lookup(var.methods[count.index], "invoke_arn")}"
+
+  credentials = "${lookup(var.methods[count.index], "credentials_arn", "")}"
 }
 
 data "template_file" "method" {
