@@ -12,7 +12,7 @@ resource "aws_api_gateway_method" "method" {
 
   api_key_required = "${var.api_key_required}"
 
-  count = "${var.num_methods}"
+  count = "${length(var.methods) > 0 ? length(var.methods) : 0}"
   http_method = "${lookup(var.methods[count.index], "method")}"
 }
 
@@ -24,7 +24,7 @@ resource "aws_api_gateway_method_response" "method_response" {
   rest_api_id = "${var.api_id}"
   resource_id = "${aws_api_gateway_resource.resource.id}"
 
-  count = "${var.num_methods}"
+  count = "${length(var.methods) > 0 ? length(var.methods) : 0}"
   http_method = "${lookup(var.methods[count.index], "method")}"
 
   status_code = "200"
@@ -42,7 +42,7 @@ resource "aws_api_gateway_integration_response" "integration_response" {
   rest_api_id = "${var.api_id}"
   resource_id = "${aws_api_gateway_resource.resource.id}"
 
-  count = "${var.num_methods}"
+  count = "${length(var.methods) > 0 ? length(var.methods) : 0}"
   http_method = "${lookup(var.methods[count.index], "method")}"
 
   status_code = "200"
@@ -56,7 +56,7 @@ resource "aws_api_gateway_integration" "resource_lambda_integration" {
   rest_api_id = "${var.api_id}"
   resource_id = "${aws_api_gateway_resource.resource.id}"
 
-  count = "${var.num_methods}"
+  count = "${length(var.methods) > 0 ? length(var.methods) : 0}"
   http_method = "${lookup(var.methods[count.index], "method")}"
 
   integration_http_method = "POST"
@@ -67,7 +67,7 @@ resource "aws_api_gateway_integration" "resource_lambda_integration" {
 }
 
 data "template_file" "method" {
-  count = "${var.num_methods}"
+  count = "${length(var.methods) > 0 ? length(var.methods) : 0}"
   template = "$${method}"
 
   vars {

@@ -21,8 +21,6 @@ module "customer" {
 
   path_part = "customer"
 
-  num_methods = 2
-
   methods = [
     {
       method = "GET"
@@ -44,8 +42,6 @@ module "customer_customer-id" {
   parent_resource_id = "${module.customer.resource_id}"
 
   path_part = "{customer-id}"
-
-  num_methods = 3
 
   methods = [
     {
@@ -73,8 +69,6 @@ module "customer_customer-id_orders" {
 
   path_part = "order"
 
-  num_methods = 2
-
   methods = [
     {
       method = "GET"
@@ -96,8 +90,6 @@ module "customer_customer-id_order_order-id" {
   parent_resource_id = "${module.customer_customer-id_orders.resource_id}"
 
   path_part = "{order-id}"
-
-  num_methods = 3
 
   methods = [
     {
@@ -129,8 +121,6 @@ module "customer" {
 
   path_part = "customer"
 
-  num_methods = 2
-
   methods = [
     {
       method = "GET"
@@ -158,8 +148,6 @@ module "customer_customer-id" {
   parent_resource_id = "${module.customer.resource_id}"
 
   path_part = "{customer-id}"
-
-  num_methods = 3
 
   methods = [
     {
