@@ -1,3 +1,4 @@
+
 # Terraform Serverless Resource module
 
 This module simplifies the setup required to deploy Lambda functions under API Gateway. It also sets up CORS for created resources and methods.
